@@ -1,0 +1,26 @@
+public class TestEqual
+{
+       public static void main(String[] args)
+      {
+             int it = 65;
+             float fl = 65.0f;
+             //将输出true
+            System. out.println("65和65.0f是否相等？" + (it == fl));
+             char ch = 'A' ;
+             //将输出true
+            System. out.println("65和'A'是否相等？" + (it == ch));
+            String str1 = new String("hello" );
+            String str2 = new String("hello" );
+             //将输出false
+            System. out.println("str1和str2是否相等？" + (str1 == str2));
+             //将输出true
+            System. out.println("str1是否equals str2？" + (str1.equals(str2)));
+
+      }
+}
+
+
+//65和65.0f是否相等？true
+//65和'A'是否相等？true
+//str1和str2是否相等？false
+//str1是否equals str2？true
