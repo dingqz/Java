@@ -1,0 +1,32 @@
+MyEclipse开发中，全局编码设置为UTF-8
+
+MyeclipseEclipseJavaWindowsXP 
+Eclipse+MyEclipse开发中，全局编码设置为UTF-8 
+2010-04-30 10:19 
+
+在使用Eclipse+MyEclipse开发中，许多文件编码默认是ISO-8859-1，不支持中文（如常用的JSP）。这样我们每次建文件都要手动改编码，其实我们可以在设置文件默认编码，今后再创建时就不用每次修改编码了， 
+
+UTF-8 
+
+如果要使插件开发应用能有更好的国际化支持，能够最大程度的支持中文输出，则最好使 Java文件使用UTF-8编码。然而，Eclipse工作空间(workspace)的缺省字符编码是操作系统缺省的编码，简体中文操作系统 (Windows XP、Windows 2000简体中文)的缺省编码是GB18030，在此工作空间中建立的工程编码是GB18030，工程中建立的java文件也是GB18030。如果要使新建立工程、java文件直接使UTF-8则需要做以下工作： 
+
+１、windows->Preferences...打开"首选项"对话框，左侧导航树，导航到general->Workspace，右侧Text file encoding，选择Other，改变为UTF-8，以后新建立工程其属性对话框中的Text file encoding即为UTF-8。 
+
+２、windows->Preferences...打开"首选项"对话框，左侧导航树，导航到general->Content Types，右侧Context Types树，点开Text中每一颗子项,并在中输入"UTF-8",点update! 
+
+其他java应用开发相关的文件如：properties、XML等已经由Eclipse缺省指定，分别为ISO8859-1，UTF-8，如开发中确需改变编码格式则可以在此指定。 
+
+３、window-->preference-->MyEclipse-->Files and Editors,将每个子项的"Encoding"改为"ISO 10645/Unicode(UTF-8)",点Apply! 
+
+４、经过上述三步，新建java文件即为UTF-8编码，Eclipse编译、运行、调试都没问题，但是做RCP应用的Product输出时、或者插件输出时，则总是出错，要么不能编译通过(输出时要重新compile)、要么输出的插件运行时中文显示乱码。此时需要再RCP应用、或插件Plugin工程的build.properties中增加一行，javacDefaultEncoding.. = UTF-8。让输出时编译知道java源文件时UTF-8编码。这个设置需要保证所有的java源文件时UTF-8编码格式，如果不全是，可以参考 Eclipse帮中(Plug-in Development Environment Guide > Reference > Feature and Plug-in Build configuration)，建议全部java源文件是UTF-8编码。 
+
+如果插件开发、RCP应用开发原来基于其他编码，如GB18030，想转换为UTF-8，则首先，做以上工作；然后通过查找编码转换工具，如基于 iconv的批量转换工具，将原编码转换为UTF-8编码，注意只转换java源文件，其他类型文件可能已经是比较合适的编码了；将原工程属性中的 Text file encoding，从原编码改为UTF-8即可。 
+
+MyEclipse编码设置 
+　　我的Myeclipse安装后编码默认是GB18030，外面的人一般推荐用UTF-8。如果在导入项目后发现乱码现象，那是编码设置设置不对。 
+
+　　全局编码设置：编码设置的方法：ToolBar-->Window-->Preferences-->General-->Workspace-->Text file encoding，设置合适的编码。 
+
+　　局部编码设置：在源码按右键-->General-->Editors-->Test Editors-->Spelling-->Encoding，这里是设置单个文件的编码。 
+
+　　推荐还是使用全局编码设置吧。
